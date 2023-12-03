@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Utils
 
 
 public enum Day2 { }
@@ -31,7 +32,7 @@ public extension Day2 {
 
 private extension Day2 {
 	static func loadGames() -> [Game] {
-		lines(in: "day2").enumerated().compactMap { (index, line) in
+		lines(in: "day2", bundle: .module).enumerated().compactMap { (index, line) in
 			guard !line.isEmpty else { return nil }
 			
 			let draws = line

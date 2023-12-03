@@ -1,0 +1,27 @@
+{
+  "configurations" : [
+    {
+      "id" : "0C42307D-AEAA-43C8-A90A-6358D66BD7A8",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "skippedTests" : [
+        "AdventOfCode2023Tests"
+      ],
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "AdventOfCodeTests",
+        "name" : "AdventOfCodeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

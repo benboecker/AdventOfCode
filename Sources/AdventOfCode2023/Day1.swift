@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import Utils
 
 
 public enum Day1 { }
 
 public extension Day1 {
 	static func part1() -> Int {
-		lines(in: "day1").reduce(0) { total, line in
+		lines(in: "day1", bundle: .module).reduce(0) { total, line in
 			guard
 				let firstNumber = line.first(where: { $0.isWholeNumber })?.wholeNumberValue,
 				let lastNumber = line.last(where: { $0.isWholeNumber })?.wholeNumberValue
@@ -25,7 +26,7 @@ public extension Day1 {
 	}
 	
 	static func part2() -> Int {
-		lines(in: "day1").reduce(0) { total, line in
+		lines(in: "day1", bundle: .module).reduce(0) { total, line in
 			guard
 				let firstNumber = line.firstNumber(),
 				let lastNumber = line.lastNumber()
