@@ -44,7 +44,6 @@ Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
 		print(Day4.part2())
 	}
 	
-	
 	func test_day5_part1() {
 		let input = """
 seeds: 79 14 55 13
@@ -85,7 +84,6 @@ humidity-to-location map:
 		print(Day5.part1())
 	}
 	
-	
 	func test_day5_part2() {
 		let input = """
 seeds: 79 14 55 13
@@ -123,6 +121,24 @@ humidity-to-location map:
 56 93 4
 """
 		XCTAssertEqual(Day5.part2(input: input), 46)
-		print(Day5.part2())
+//		print(Day5.part2())
+	}
+	
+	func test_day6_part1() {
+		let input = """
+Time:      7  15   30
+Distance:  9  40  200
+"""
+		XCTAssertEqual(Day6.part1(input: input.components(separatedBy: .newlines)), 288)
+		print(Day6.part1())
+	}
+	
+	func test_day6_part2() {
+		let input = """
+Time:      7  15   30
+Distance:  9  40  200
+"""
+		XCTAssertEqual(Day6.part2(input: input.components(separatedBy: .newlines)), 71503)
+		print(Day6.part2())
 	}
 }
