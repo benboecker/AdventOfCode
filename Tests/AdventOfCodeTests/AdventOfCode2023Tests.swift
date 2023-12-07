@@ -141,4 +141,28 @@ Distance:  9  40  200
 		XCTAssertEqual(Day6.part2(input: input.components(separatedBy: .newlines)), 71503)
 		print(Day6.part2())
 	}
+	
+	func test_day7_part1() {
+		let input = """
+32T3K 765
+T55J5 684
+KK677 28
+KTJJT 220
+QQQJA 483
+"""
+		XCTAssertEqual(Day7.part1(input: input.components(separatedBy: .newlines)), 6440)
+		print(Day7.part1())
+	}
+	
+	func test_day7_part2() {
+//		let input = """
+//32T3K 765
+//T55J5 684
+//KK677 28
+//KTJJT 220
+//QQQJA 483
+//"""
+//		XCTAssertEqual(Day7_Part2.part2(input: input.components(separatedBy: .newlines)), 5905)
+		print(Day7_Part2.part2())
+	}
 }
