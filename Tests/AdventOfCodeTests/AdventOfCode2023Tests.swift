@@ -165,4 +165,33 @@ QQQJA 483
 //		XCTAssertEqual(Day7_Part2.part2(input: input.components(separatedBy: .newlines)), 5905)
 		print(Day7_Part2.part2())
 	}
+	
+	func test_day8_part1() {
+		let input = """
+LLR
+
+AAA = (BBB, BBB)
+BBB = (AAA, ZZZ)
+ZZZ = (ZZZ, ZZZ)
+"""
+		XCTAssertEqual(Day8.part1(input: input.components(separatedBy: .newlines)), 6)
+		print(Day8.part1())
+	}
+	
+	func test_day8_part2() {
+		let input = """
+LR
+
+11A = (11B, XXX)
+11B = (XXX, 11Z)
+11Z = (11B, XXX)
+22A = (22B, XXX)
+22B = (22C, 22C)
+22C = (22Z, 22Z)
+22Z = (22B, 22B)
+XXX = (XXX, XXX)
+"""
+		XCTAssertEqual(Day8.part2(input: input.components(separatedBy: .newlines)), 6)
+		print(Day8.part2())
+	}
 }
