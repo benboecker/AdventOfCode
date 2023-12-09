@@ -16,4 +16,6 @@ public extension Array {
 		
 		return self[index]
 	}
+	
+	var hasContent: Bool { !isEmpty }
 }

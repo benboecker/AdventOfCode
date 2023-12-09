@@ -121,7 +121,7 @@ humidity-to-location map:
 56 93 4
 """
 		XCTAssertEqual(Day5.part2(input: input), 46)
-//		print(Day5.part2())
+		//		print(Day5.part2())
 	}
 	
 	func test_day6_part1() {
@@ -155,14 +155,14 @@ QQQJA 483
 	}
 	
 	func test_day7_part2() {
-//		let input = """
-//32T3K 765
-//T55J5 684
-//KK677 28
-//KTJJT 220
-//QQQJA 483
-//"""
-//		XCTAssertEqual(Day7_Part2.part2(input: input.components(separatedBy: .newlines)), 5905)
+		//		let input = """
+		//32T3K 765
+		//T55J5 684
+		//KK677 28
+		//KTJJT 220
+		//QQQJA 483
+		//"""
+		//		XCTAssertEqual(Day7_Part2.part2(input: input.components(separatedBy: .newlines)), 5905)
 		print(Day7_Part2.part2())
 	}
 	
@@ -193,5 +193,23 @@ XXX = (XXX, XXX)
 """
 		XCTAssertEqual(Day8.part2(input: input.components(separatedBy: .newlines)), 6)
 		print(Day8.part2())
+	}
+		
+	func test_day9_part1() {
+		let input = """
+0 3 6 9 12 15
+1 3 6 10 15 21
+10 13 16 21 30 45
+"""
+		XCTAssertEqual(Day9.part1(input: input.components(separatedBy: .newlines)), 114)
+		print(Day9.part1())
+	}
+	
+	func test_day9_part2() {
+		let input = """
+10 13 16 21 30 45
+"""
+		XCTAssertEqual(Day9.part2(input: input.components(separatedBy: .newlines)), 5)
+		print(Day9.part2())
 	}
 }
