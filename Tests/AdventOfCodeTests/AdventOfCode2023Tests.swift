@@ -1,37 +1,38 @@
-import XCTest
+import Testing
 @testable import AdventOfCode2023
 
-final class AdventOfCode2023Tests: XCTestCase {
-	
-	func test_day1_part1() throws {
-		XCTAssertEqual(Day1.part1(), 55002)
+@Suite("Advent of Code 2023")
+struct AdventOfCode2023Tests {
+
+	@Test func Day1_part1() throws {
+		#expect(Day1.part1() == 55002)
 	}
 	
-	func test_day1_part2() throws {
-		XCTAssertEqual(Day1.part2(), 55093)
+	@Test func Day1_part2() throws {
+		#expect(Day1.part2() == 55093)
 	}
 	
-	func test_day2_part1() {
-		XCTAssertEqual(Day2.part1(), 2061)
+	@Test func Day2_part1() {
+		#expect(Day2.part1() == 2061)
 	}
 	
-	func test_day2_part2() {
-		XCTAssertEqual(Day2.part2(), 72596)
+	@Test func Day2_part2() {
+		#expect(Day2.part2() == 72596)
 	}
 	
-	func test_day3_part1() {
-		XCTAssertEqual(Day3.part1(), 536576)
+	@Test func Day3_part1() {
+		#expect(Day3.part1() == 536576)
 	}
 	
-	func test_day3_part2() {
-		XCTAssertEqual(Day3.part2(), 75741499)
+	@Test func Day3_part2() {
+		#expect(Day3.part2() == 75741499)
 	}
 	
-	func test_day4_part1() {
-		XCTAssertEqual(Day4.part1(), 20407)
+	@Test func Day4_part1() {
+		#expect(Day4.part1() == 20407)
 	}
 	
-	func test_day4_part2() {
+	@Test func Day4_part2() {
 		let input = """
 Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 Card 2: 13 32 20 16 61 | 61 30 68 82 17 32 24 19
@@ -40,11 +41,11 @@ Card 4: 41 92 73 84 69 | 59 84 76 51 58  5 54 83
 Card 5: 87 83 26 28 32 | 88 30 70 12 93 22 82 36
 Card 6: 31 18 13 56 72 | 74 77 10 23 35 67 36 11
 """
-		XCTAssertEqual(Day4.part2(input: input.components(separatedBy: .newlines)), 30)
+		#expect(Day4.part2(input: input.components(separatedBy: .newlines)) == 30)
 		print(Day4.part2())
 	}
 	
-	func test_day5_part1() {
+	@Test func Day5_part1() {
 		let input = """
 seeds: 79 14 55 13
 
@@ -80,11 +81,11 @@ humidity-to-location map:
 60 56 37
 56 93 4
 """
-		XCTAssertEqual(Day5.part1(input: input), 35)
+		#expect(Day5.part1(input: input) == 35)
 		print(Day5.part1())
 	}
 	
-	func test_day5_part2() {
+	@Test func Day5_part2() {
 		let input = """
 seeds: 79 14 55 13
 
@@ -120,29 +121,29 @@ humidity-to-location map:
 60 56 37
 56 93 4
 """
-		XCTAssertEqual(Day5.part2(input: input), 46)
+		#expect(Day5.part2(input: input) == 46)
 		//		print(Day5.part2())
 	}
 	
-	func test_day6_part1() {
+	@Test func Day6_part1() {
 		let input = """
 Time:      7  15   30
 Distance:  9  40  200
 """
-		XCTAssertEqual(Day6.part1(input: input.components(separatedBy: .newlines)), 288)
+		#expect(Day6.part1(input: input.components(separatedBy: .newlines)) == 288)
 		print(Day6.part1())
 	}
 	
-	func test_day6_part2() {
+	@Test func Day6_part2() {
 		let input = """
 Time:      7  15   30
 Distance:  9  40  200
 """
-		XCTAssertEqual(Day6.part2(input: input.components(separatedBy: .newlines)), 71503)
+		#expect(Day6.part2(input: input.components(separatedBy: .newlines)) == 71503)
 		print(Day6.part2())
 	}
 	
-	func test_day7_part1() {
+	@Test func Day7_part1() {
 		let input = """
 32T3K 765
 T55J5 684
@@ -150,11 +151,11 @@ KK677 28
 KTJJT 220
 QQQJA 483
 """
-		XCTAssertEqual(Day7.part1(input: input.components(separatedBy: .newlines)), 6440)
+		#expect(Day7.part1(input: input.components(separatedBy: .newlines)) == 6440)
 		print(Day7.part1())
 	}
 	
-	func test_day7_part2() {
+	@Test func Day7_part2() {
 		//		let input = """
 		//32T3K 765
 		//T55J5 684
@@ -166,7 +167,7 @@ QQQJA 483
 		print(Day7_Part2.part2())
 	}
 	
-	func test_day8_part1() {
+	@Test func Day8_part1() {
 		let input = """
 LLR
 
@@ -174,11 +175,11 @@ AAA = (BBB, BBB)
 BBB = (AAA, ZZZ)
 ZZZ = (ZZZ, ZZZ)
 """
-		XCTAssertEqual(Day8.part1(input: input.components(separatedBy: .newlines)), 6)
+		#expect(Day8.part1(input: input.components(separatedBy: .newlines)) == 6)
 		print(Day8.part1())
 	}
 	
-	func test_day8_part2() {
+	@Test func Day8_part2() {
 		let input = """
 LR
 
@@ -191,25 +192,25 @@ LR
 22Z = (22B, 22B)
 XXX = (XXX, XXX)
 """
-		XCTAssertEqual(Day8.part2(input: input.components(separatedBy: .newlines)), 6)
+		#expect(Day8.part2(input: input.components(separatedBy: .newlines)) == 6)
 		print(Day8.part2())
 	}
 		
-	func test_day9_part1() {
+	@Test func Day9_part1() {
 		let input = """
 0 3 6 9 12 15
 1 3 6 10 15 21
 10 13 16 21 30 45
 """
-		XCTAssertEqual(Day9.part1(input: input.components(separatedBy: .newlines)), 114)
+		#expect(Day9.part1(input: input.components(separatedBy: .newlines)) == 114)
 		print(Day9.part1())
 	}
 	
-	func test_day9_part2() {
+	@Test func Day9_part2() {
 		let input = """
 10 13 16 21 30 45
 """
-		XCTAssertEqual(Day9.part2(input: input.components(separatedBy: .newlines)), 5)
+		#expect(Day9.part2(input: input.components(separatedBy: .newlines)) == 5)
 		print(Day9.part2())
 	}
 }

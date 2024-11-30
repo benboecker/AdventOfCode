@@ -13,9 +13,6 @@
   },
   "testTargets" : [
     {
-      "skippedTests" : [
-        "AdventOfCode2022Tests"
-      ],
       "target" : {
         "containerPath" : "container:",
         "identifier" : "AdventOfCodeTests",

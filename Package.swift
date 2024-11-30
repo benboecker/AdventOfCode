@@ -9,6 +9,7 @@ let package = Package(
 	products: [
 		.library(name: "AdventOfCode2022", targets: ["AdventOfCode2022"]),
 		.library(name: "AdventOfCode2023", targets: ["AdventOfCode2023"]),
+		.library(name: "AdventOfCode2024", targets: ["AdventOfCode2024"]),
 		.library(name: "Utils", targets: ["Utils"]),
 	],
 	targets: [
@@ -18,10 +19,14 @@ let package = Package(
 		.target(name: "AdventOfCode2023", dependencies: ["Utils"], resources: [
 			.process("Resources"),
 		]),
+		.target(name: "AdventOfCode2024", dependencies: ["Utils"], resources: [
+			.process("Resources"),
+		]),
 		.target(name: "Utils"),
 		.testTarget(name: "AdventOfCodeTests",dependencies: [
 			"AdventOfCode2022",
 			"AdventOfCode2023",
+			"AdventOfCode2024",
 		]),
 	]
 )
