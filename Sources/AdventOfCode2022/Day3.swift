@@ -9,33 +9,54 @@ import Foundation
 import Utils
 
 
-public enum Day3 { }
-
-
-public extension Day3 {
-	static func part1() -> Int {
-		getRucksacks()
-			.reduce(0) {
-				$0 + $1.priority
-			}
-	}
-	
-	static func part2() -> Int {
-		0
-	}
-}
-
-private extension Day3 {
-	static func getRucksacks() -> [Rucksack] {
-		lines(in: "day3", bundle: .module)
+public struct Day3: Day {
+	public init(_ input: Lines) {
+		self.rucksacks = input
 			.filter { !$0.isEmpty }
 			.map { Rucksack(from: $0) }
 	}
+	
+	private let rucksacks: [Rucksack]
+	
+	public func part1() async throws -> String {
+		rucksacks
+			.reduce(0) {
+				$0 + $1.priority
+			}
+			.formatted(.number.grouping(.never))
+	}
+	
+	public func part2() async throws -> String {
+		var index = 2
+		var priority = 0
+		
+		while index < rucksacks.count {
+			let rucksack1 = Set(rucksacks[index - 2].contents)
+			let rucksack2 = Set(rucksacks[index - 1].contents)
+			let rucksack3 = Set(rucksacks[index - 0].contents)
+			
+			let sameElements = rucksack1
+				.intersection(rucksack2)
+				.intersection(rucksack3)
+			
+			priority += sameElements.first!.priority
+			
+			index += 3
+		}
+		
+		
+		return priority.formatted(.number.grouping(.never))
+	}
 }
 
-private struct Rucksack {
+
+private struct Rucksack: Hashable {
 	let compOne: String
 	let compTwo: String
+	
+	var contents: String {
+		compOne + compTwo
+	}
 	
 	init(from string: String) {
 		compOne = String(string.prefix(string.count / 2))
@@ -43,7 +64,7 @@ private struct Rucksack {
 	}
 	
 	var priority: Int {
-		(characters.firstIndex(of: sameElement)?.utf16Offset(in: characters) ?? 0) + 1
+		sameElement.priority
 	}
 	
 	private var sameElement: Character {
@@ -55,9 +76,12 @@ private struct Rucksack {
 		
 		fatalError()
 	}
-	
-	private let characters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 }
 
 
-
+extension String.Element {
+	var priority: Int {
+		(characters.firstIndex(of: self)?.utf16Offset(in: characters) ?? 0) + 1
+	}
+	private var characters: String { "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" }
+}

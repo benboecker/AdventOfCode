@@ -9,12 +9,14 @@ import Foundation
 import Utils
 
 
-public enum Day3 { }
-
-public extension Day3 {
-	static func part1() -> Int {
-		let grid = Grid(from: lines(in: "day3", bundle: .module))
-		
+public struct Day3: Day {
+	public init(_ input: Lines) {
+		self.grid = Grid(from: input)
+	}
+	
+	private let grid: Grid
+	
+	public func part1() async throws -> String {
 		var numbers: Set<Number> = []
 		
 		for (rowIndex, row) in grid.rows.enumerated() {
@@ -33,26 +35,27 @@ public extension Day3 {
 			}
 		}
 		
-		return numbers.reduce(0) { $0 + $1.value }
+		return numbers
+			.reduce(0) { $0 + $1.value }
+			.formatted(.number.grouping(.never))
+
 	}
 	
-	static func part2() -> Int {
-		let grid = Grid(from: lines(in: "day3", bundle: .module))
-		
+	public func part2() async throws -> String {
 		var total = 0
 		
 		for (rowIndex, row) in grid.rows.enumerated() {
 			for (columnIndex, character) in row.enumerated() {
 				if let character, String(character) == "*" {
 					let position = Position(row: rowIndex, column: columnIndex)
-
+					
 					let neighboringNumbers = Array(Set(
 						grid
 							.neighboringPositions(at: position)
 							.compactMap { grid.number(at: $0) }
 					))
 					
-					if neighboringNumbers.count == 2 {						
+					if neighboringNumbers.count == 2 {
 						total += neighboringNumbers[0].value * neighboringNumbers[1].value
 					}
 				}
@@ -60,6 +63,7 @@ public extension Day3 {
 		}
 		
 		return total
+			.formatted(.number.grouping(.never))
 	}
 }
 
@@ -67,7 +71,7 @@ private extension Day3 {
 	struct Grid: CustomStringConvertible {
 		let rows: [[Character?]]
 		
-		init(from lines: [String]) {
+		init(from lines: Lines) {
 			var rows: [[Character?]] = []
 			
 			for line in lines {

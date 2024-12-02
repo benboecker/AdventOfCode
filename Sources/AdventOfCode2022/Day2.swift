@@ -9,22 +9,31 @@ import Foundation
 import Utils
 
 
-public enum Day2 { }
 
-
-public extension Day2 {
-	static func part1() -> Int {
-		getRounds(part1: true).reduce(0) { $0 + $1.points }
+public struct Day2: Day {
+	public init(_ input: Utils.Lines) {
+		self.lines = input
 	}
 	
-	static func part2() -> Int {
-		getRounds(part1: false).reduce(0) { $0 + $1.points }
+	private let lines: Lines
+	
+	public func part1() async throws -> String {
+		getRounds(part1: true)
+			.reduce(0) { $0 + $1.points }
+			.formatted(.number.grouping(.never))
+	}
+	
+	public func part2() async throws -> String {
+		getRounds(part1: false)
+			.reduce(0) { $0 + $1.points }
+			.formatted(.number.grouping(.never))
 	}
 }
 
+
 private extension Day2 {
-	static func getRounds(part1: Bool) -> [Round] {
-		lines(in: "day2", bundle: .module).filter{ !$0.isEmpty }.map { Round(from: $0, part1: part1) }
+	func getRounds(part1: Bool) -> [Round] {
+		lines.filter{ !$0.isEmpty }.map { Round(from: $0, part1: part1) }
 	}
 }
 

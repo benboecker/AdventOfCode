@@ -9,11 +9,16 @@ import Foundation
 import Utils
 
 
-public enum Day1 { }
 
-public extension Day1 {
-	static func part1() -> Int {
-		lines(in: "day1", bundle: .module).reduce(0) { total, line in
+public struct Day1: Day {
+	public init(_ input: Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
+	
+	public func part1() async throws -> String {
+		lines.reduce(0) { total, line in
 			guard
 				let firstNumber = line.first(where: { $0.isWholeNumber })?.wholeNumberValue,
 				let lastNumber = line.last(where: { $0.isWholeNumber })?.wholeNumberValue
@@ -23,21 +28,25 @@ public extension Day1 {
 			
 			return total + firstNumber * 10 + lastNumber
 		}
+		.formatted(.number.grouping(.never))
 	}
 	
-	static func part2() -> Int {
-		lines(in: "day1", bundle: .module).reduce(0) { total, line in
+	public func part2() async throws -> String {
+		lines.reduce(0) { total, line in
 			guard
 				let firstNumber = line.firstNumber(),
 				let lastNumber = line.lastNumber()
 			else {
 				return total
 			}
-
+			
 			return total + firstNumber * 10 + lastNumber
-		}
+		}.formatted(.number.grouping(.never))
 	}
+	
+	
 }
+
 
 private extension String {
 	private var numbers: [String: Int] { [

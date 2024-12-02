@@ -9,14 +9,15 @@ import Foundation
 import Utils
 
 
-public enum Day8 { }
-
-public extension Day8 {
-	typealias Map = [String: [String: String]]
+public struct Day8: Day {
+	public init(_ input: Utils.Lines) {
+		self.lines = input
+	}
 	
-	static func part1(input: [String]? = nil) -> Int {
-		let lines = input ?? lines(in: "day8", bundle: .module)
-		
+	let lines: Lines
+	typealias Map = [String: [String: String]]
+
+	public func part1() async throws -> String {
 		let instructions = lines[0].map { String($0) }
 		let map = getMap(from: lines)
 		
@@ -26,12 +27,12 @@ public extension Day8 {
 		
 		while currentLocation != "ZZZ" {
 			let nextDirection = instructions[instructionIndex]
-
+			
 			guard
 				let options = map[currentLocation],
 				let nextDestination = options[nextDirection]
 			else { fatalError("fuck... '\(currentLocation)' not found in map") }
-						
+			
 			currentLocation = nextDestination
 			stepCount += 1
 			
@@ -39,14 +40,13 @@ public extension Day8 {
 		}
 		
 		return stepCount
+			.formatted(.number.grouping(.never))
 	}
 	
-	static func part2(input: [String]? = nil) -> Int {
-		let lines = input ?? lines(in: "day8", bundle: .module)
-		
+	public func part2() async throws -> String {
 		let instructions = lines[0].map { String($0) }
 		let map = getMap(from: lines)
-
+		
 		var instructionIndex = 0
 		var currentLocations = map.keys.filter(\.isStart)
 		var stepCounts = Array(repeating: 0, count: currentLocations.count)
@@ -69,12 +69,14 @@ public extension Day8 {
 		}
 		
 		return stepCounts.leastCommonMultiple
+			.formatted(.number.grouping(.never))
 	}
 
 }
 
+
 private extension Day8 {
-	static func getMap(from lines: [String]) -> Map {
+	func getMap(from lines: Lines) -> Map {
 		var map: Map = [:]
 		
 		for line in lines where !line.isEmpty {

@@ -10,11 +10,16 @@ import Foundation
 import Utils
 
 
-public enum Day4 { }
-
-public extension Day4 {
-	static func part1() -> Int {
-		lines(in: "day4", bundle: .module)
+public struct Day4: Day {
+	
+	public init(_ input: Utils.Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
+	
+	public func part1() async throws -> String {
+		lines
 			.filter { !$0.isEmpty }
 			.reduce(0) { total, line in
 				let splitted = line.components(separatedBy: ":")[1].components(separatedBy: "|")
@@ -29,17 +34,22 @@ public extension Day4 {
 					return total
 				}
 			}
+			.formatted(.number.grouping(.never))
+
 	}
 	
-	static func part2(input: [String]? = nil) -> Int {
+	public func part2() async throws -> String {
 		typealias Card = (matching: Int, copies: Int)
-		var cards = (input ?? lines(in: "day4", bundle: .module)).filter { !$0.isEmpty }.map { line in
-			let splitted = line.components(separatedBy: ":")[1].components(separatedBy: "|")
-			let myNumbers = Set(splitted[1].components(separatedBy: .whitespaces).compactMap { Int($0) })
-			let winningNumbers = Set(splitted[0].components(separatedBy: .whitespaces).compactMap { Int($0) })
-			let intersect = winningNumbers.intersection(myNumbers)
-			return (matching: intersect.count, copies: 1)
-		}
+		
+		var cards = lines
+			.filter { !$0.isEmpty }
+			.map { line in
+				let splitted = line.components(separatedBy: ":")[1].components(separatedBy: "|")
+				let myNumbers = Set(splitted[1].components(separatedBy: .whitespaces).compactMap { Int($0) })
+				let winningNumbers = Set(splitted[0].components(separatedBy: .whitespaces).compactMap { Int($0) })
+				let intersect = winningNumbers.intersection(myNumbers)
+				return (matching: intersect.count, copies: 1)
+			}
 		
 		for index in (0 ..< cards.count) {
 			let card = cards[index]
@@ -51,6 +61,8 @@ public extension Day4 {
 			}
 		}
 		
-		return cards.reduce(0) { $0 + $1.copies }
+		return cards
+			.reduce(0) { $0 + $1.copies }
+			.formatted(.number.grouping(.never))
 	}
 }

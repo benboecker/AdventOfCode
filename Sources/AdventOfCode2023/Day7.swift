@@ -9,22 +9,32 @@ import Foundation
 import Utils
 
 
-public enum Day7 { }
-
-public extension Day7 {
-	static func part1(input: [String]? = nil) -> Int {
-		let input = input ?? lines(in: "day7", bundle: .module)
-		let hands = input.filter { !$0.isEmpty }.map { Hand(from: $0) }
+public struct Day7: Day {
+	public init(_ input: Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
+	
+	public func part1() async throws -> String {
+		let hands = lines.filter { !$0.isEmpty }.map { Hand(from: $0) }
 		let handsSorted = hands.sorted { $0 > $1}
 		let bids = handsSorted.enumerated().map { (hands.count - $0) * $1.bid }
 		let total = bids.reduce(0, +)
 		
 		return total
+			.formatted(.number.grouping(.never))
 	}
+	
+	public func part2() async throws -> String {
+		""
+	}
+	
 }
 
+
+
 private extension Day7 {
-	
 	struct Hand: Comparable {
 		let cards: [Card]
 		let handType: HandType

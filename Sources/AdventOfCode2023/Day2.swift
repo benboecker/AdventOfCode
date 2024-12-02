@@ -9,30 +9,35 @@ import Foundation
 import Utils
 
 
-public enum Day2 { }
-
-public extension Day2 {
-	static var config: (red: Int, green: Int, blue: Int) = (red: 12, green: 13, blue: 14)
-	
-	static func part1() -> Int {
-		loadGames()
-			.filter { game in
-				game.draws.allSatisfy { draw in
-					draw.red <= config.red && draw.green <= config.green && draw.blue <= config.blue
-				}
-			}
-			.reduce(0) { $0 + $1.id }
+public struct Day2: Day {
+	public init(_ input: Lines) {
+		self.games = Self.loadGames(from: input)
 	}
 	
-	static func part2() -> Int {
-		loadGames()
+	private let games: [Game]
+	private let config: (red: Int, green: Int, blue: Int) = (red: 12, green: 13, blue: 14)
+	
+	public func part1() async throws -> String {
+		games.filter { game in
+			game.draws.allSatisfy { draw in
+				draw.red <= config.red && draw.green <= config.green && draw.blue <= config.blue
+			}
+		}
+		.reduce(0) { $0 + $1.id }
+		.formatted(.number.grouping(.never))
+	}
+	
+	public func part2() async throws -> String {
+		games
 			.reduce(0) { $0 + $1.power }
+			.formatted(.number.grouping(.never))
 	}
 }
 
+
 private extension Day2 {
-	static func loadGames() -> [Game] {
-		lines(in: "day2", bundle: .module).enumerated().compactMap { (index, line) in
+	static func loadGames(from lines: Lines) -> [Game] {
+		lines.enumerated().compactMap { (index, line) in
 			guard !line.isEmpty else { return nil }
 			
 			let draws = line

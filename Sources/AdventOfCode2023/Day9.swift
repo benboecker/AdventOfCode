@@ -9,30 +9,37 @@ import Foundation
 import Utils
 
 
-public enum Day9 { }
-
-public extension Day9 {
-	typealias Map = [String: [String: String]]
+public struct Day9: Day {
+	public init(_ input: Utils.Lines) {
+		self.lines = input
+	}
 	
-	static func part1(input: [String]? = nil) -> Int {
-		let lines = input ?? lines(in: "day9", bundle: .module)
-		let values = lines.filter{ !$0.isEmpty }.map { Values(from: $0) }
+	let lines: Lines
+	typealias Map = [String: [String: String]]
+
+	public func part1() async throws -> String {
+		let values = lines
+			.filter{ !$0.isEmpty }
+			.map { Values(from: $0) }
 		
 		values.forEach { $0.calculatePrediction() }
 		
-		return values.reduce(0) { $0 + $1.predication }
+		return values
+			.reduce(0) { $0 + $1.predication }
+			.formatted(.number.grouping(.never))
 	}
 	
-	static func part2(input: [String]? = nil) -> Int {
-		let lines = input ?? lines(in: "day9", bundle: .module)
+	public func part2() async throws -> String {
 		let values = lines.filter{ !$0.isEmpty }.map { Values(from: $0) }
 		
 		values.forEach { $0.calculateHistory() }
 		
-		return values.reduce(0) { $0 + $1.history }
+		return values
+			.reduce(0) { $0 + $1.history }
+			.formatted(.number.grouping(.never))
 	}
-
 }
+
 
 private extension Day9 {
 	class Values {

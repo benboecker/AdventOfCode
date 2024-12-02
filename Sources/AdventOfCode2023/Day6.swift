@@ -9,33 +9,35 @@ import Foundation
 import Utils
 
 
-public enum Day6 { }
-
-public extension Day6 {
-	static func part1(input: [String]? = nil) -> Int {
-		let input = input ?? lines(in: "day6", bundle: .module)
+public struct Day6: Day {
+	public init(_ input: Utils.Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
+	
+	public func part1() async throws -> String {
 		let races = zip(
-			input[0].components(separatedBy: ":")[1].components(separatedBy: .whitespaces).compactMap { Int($0) },
-			input[1].components(separatedBy: ":")[1].components(separatedBy: .whitespaces).compactMap { Int($0) }
+			lines[0].components(separatedBy: ":")[1].components(separatedBy: .whitespaces).compactMap { Int($0) },
+			lines[1].components(separatedBy: ":")[1].components(separatedBy: .whitespaces).compactMap { Int($0) }
 		).map {
 			Race(duration: $0, bestDistance: $1)
 		}
 		
-		return races.reduce(1) { $0 * $1.distances.count }
+		return races
+			.reduce(1) { $0 * $1.distances.count }
+			.formatted(.number.grouping(.never))
 	}
 	
-	static func part2(input: [String]? = nil) -> Int {
-		let input = input ?? lines(in: "day6", bundle: .module)
+	public func part2() async throws -> String {
 		let race = Race(
-			duration: Int(input[0].components(separatedBy: ":")[1].replacingOccurrences(of: " ", with: "")) ?? 0,
-			bestDistance: Int(input[1].components(separatedBy: ":")[1].replacingOccurrences(of: " ", with: "")) ?? 0
+			duration: Int(lines[0].components(separatedBy: ":")[1].replacingOccurrences(of: " ", with: "")) ?? 0,
+			bestDistance: Int(lines[1].components(separatedBy: ":")[1].replacingOccurrences(of: " ", with: "")) ?? 0
 		)
 		
-		return race.distances.count
+		return race.distances.count.formatted(.number.grouping(.never))
 	}
 }
-
-
 
 
 private extension Day6 {

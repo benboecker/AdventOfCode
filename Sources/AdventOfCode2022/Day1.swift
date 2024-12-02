@@ -9,13 +9,14 @@ import Foundation
 import Utils
 
 
-public enum Day1 { }
+public struct Day1: Day {
+	public init(_ input: Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
 
-
-public extension Day1 {
-	static func part1() -> Int {
-		let lines = lines(in: "day1", bundle: .module)
-		
+	public func part1() async throws -> String {
 		var maxValue = 0
 		var current = 0
 		
@@ -28,27 +29,18 @@ public extension Day1 {
 			}
 		}
 		
-		return maxValue
+		return maxValue.formatted(.number.grouping(.never))
 	}
 	
-	static func part2() -> Int {
-		let lines = lines(in: "day1", bundle: .module)
-		
-		var calorieValues: [Int] = []
-		var current = 0
-		
-		for line in lines {
-			if line.isEmpty {
-				calorieValues.append(current)
-				current = 0
-			} else {
-				current += Int(line) ?? 0
+	public func part2() async throws -> String {
+		lines
+			.split(separator: "")
+			.compactMap { values in
+				values.reduce(0) { $0 + Int($1)! }
 			}
-		}
-		
-		return calorieValues
 			.sorted(using: KeyPathComparator(\.self, order: .reverse))
 			.prefix(3)
 			.reduce(0, +)
+			.formatted(.number.grouping(.never))
 	}
 }

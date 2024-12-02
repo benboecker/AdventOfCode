@@ -8,7 +8,6 @@
 import Foundation
 
 public extension Array {
-	
 	subscript(safe index: Int) -> Element? {
 		guard index >= 0, index < count else {
 			return nil
@@ -16,6 +15,14 @@ public extension Array {
 		
 		return self[index]
 	}
-	
+}
+
+public extension Collection {
 	var hasContent: Bool { !isEmpty }
+}
+
+public extension Collection where Element: Hashable {
+	var uniqueElements: [Element] {
+		Array(Set(self))
+	}
 }

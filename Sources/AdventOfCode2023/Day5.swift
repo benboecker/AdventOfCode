@@ -9,12 +9,15 @@ import Foundation
 import Utils
 
 
-public enum Day5 { }
-
-public extension Day5 {
-	static func part1(input: String? = nil) -> Int {
-		let input = input ?? (try! String(contentsOf: Bundle.module.url(forResource: "day5", withExtension: "txt")!))
-		let (seeds, maps) = parsePart1Input(input)
+public struct Day5: Day {
+	public init(_ input: Utils.Lines) {
+		self.lines = input
+	}
+	
+	let lines: Lines
+	
+	public func part1() async throws -> String {
+		let (seeds, maps) = parsePart1Input()
 		
 		let locations = seeds.map { seed in
 			var mapped = seed
@@ -24,12 +27,12 @@ public extension Day5 {
 			return mapped
 		}
 		
-		return locations.min() ?? -1
+		return "\(locations.min() ?? -1)"
+
 	}
 	
-	static func part2(input: String? = nil) -> Int {
-		let input = input ?? (try! String(contentsOf: Bundle.module.url(forResource: "day5", withExtension: "txt")!))
-		let (seedRanges, maps) = parsePart2Input(input)
+	public func part2() async throws -> String {
+		let (seedRanges, maps) = parsePart2Input()
 		
 		var location = Int.max
 		for (index, range) in seedRanges.enumerated() {
@@ -37,7 +40,7 @@ public extension Day5 {
 			
 			for (index, seed) in range.enumerated() {
 				if index.isMultiple(of: 1_000_000) {
-					print("\(Float(index) / Float(range.count) * 100.0)% done")					
+					print("\(Float(index) / Float(range.count) * 100.0)% done")
 				}
 				var mapped = seed
 				for map in maps {
@@ -47,17 +50,16 @@ public extension Day5 {
 			}
 		}
 		
-		return location
+		return "\(location)"
 	}
 }
 
 
 
-
 private extension Day5 {
 	
-	static func parsePart1Input(_ input: String) -> (seeds: Set<Int>, maps: [Map]) {
-		let splitted = input.components(separatedBy: "\n\n")
+	func parsePart1Input() -> (seeds: Set<Int>, maps: [Map]) {
+		let splitted = lines[0].components(separatedBy: "\n\n")
 		let seeds = splitted[0]
 			.components(separatedBy: ":")[1]
 			.components(separatedBy: .whitespaces)
@@ -75,8 +77,8 @@ private extension Day5 {
 		return (seeds: Set(seeds), maps: maps)
 	}
 	
-	static func parsePart2Input(_ input: String) -> (seeds: Set<Range<Int>>, maps: [Map]) {
-		let splitted = input.components(separatedBy: "\n\n")
+	func parsePart2Input() -> (seeds: Set<Range<Int>>, maps: [Map]) {
+		let splitted = lines[0].components(separatedBy: "\n\n")
 		
 		let allValues = splitted[0]
 			.components(separatedBy: ":")[1]
