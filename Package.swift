@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
 	name: "AdventOfCode",
-	platforms: [.iOS(.v17), .macOS(.v14)],
+	platforms: [.iOS(.v17)],
 	products: [
 		.library(name: "AdventOfCode2022", targets: ["AdventOfCode2022"]),
 		.library(name: "AdventOfCode2023", targets: ["AdventOfCode2023"]),
@@ -17,7 +17,7 @@ let package = Package(
 		.target(name: "AdventOfCode2023", dependencies: ["Utils"], resources: [
 			.process("Resources"),
 		]),
-		.target(name: "AdventOfCode2024", dependencies: ["Utils"]),
+		.target(name: "AdventOfCode2024", dependencies: ["Utils"], swiftSettings: [.enableUpcomingFeature("BareSlashRegexLiterals")]),
 		.target(name: "Utils"),
 		.testTarget(name: "AdventOfCodeTests", dependencies: [
 			"AdventOfCode2022",

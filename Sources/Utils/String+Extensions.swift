@@ -35,4 +35,10 @@ public extension String {
 		let set = Set(self)
 		return set.count == self.count
 	}
+
+	func getRegexMatches<RegexType>(of pattern: Regex<RegexType>) -> [String] {
+		matches(of: pattern).compactMap { match in
+			String(self[match.range])
+		}
+	}
 }

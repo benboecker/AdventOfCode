@@ -11,11 +11,21 @@ import Foundation
 
 public struct Lines: Hashable {
 	public init(fileName: String, fileExtension: String = "txt", bundle: Bundle) {
-		let file = try! String(contentsOf: bundle.url(forResource: fileName, withExtension: fileExtension)!)
-		self.lines = file.components(separatedBy: .newlines).dropLast()
+		do {
+			let file = try String(contentsOf: bundle.url(forResource: fileName, withExtension: fileExtension)!)
+			self.lines = file.components(separatedBy: .newlines).dropLast()
+		} catch {
+			print("\(error)")
+			self.lines = []
+		}
+		
 	}
 	
-	let lines: [String]
+	private let lines: [String]
+	
+	public var count: Int {
+		lines.count
+	}
 	
 	public subscript(_ index: Int) -> String {
 		lines[index]
@@ -46,7 +56,7 @@ public class LinesIterator: IteratorProtocol {
 	
 	public func next() -> String? {
 		defer {index += 1 }
-		return index < lines.lines.count ? lines.lines[index] : nil
+		return index < lines.count ? lines[index] : nil
 	}
 }
 
