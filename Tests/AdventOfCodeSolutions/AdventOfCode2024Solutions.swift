@@ -11,7 +11,7 @@ import Utils
 
 
 @Suite("Advent of Code 2024 - Solutions")
-struct AdventOfCodeSolutions {
+struct AdventOfCode2024Solutions {
 	
 	@Test("Solutions")
 	func solutions() async throws {

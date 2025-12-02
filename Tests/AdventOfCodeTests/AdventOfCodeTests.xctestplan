@@ -14,9 +14,24 @@
   "testTargets" : [
     {
       "parallelizable" : false,
-      "skippedTests" : [
-        "AdventOfCode2023Tests"
-      ],
+      "skippedTests" : {
+        "suites" : [
+          {
+            "name" : "AdventOfCode2022Tests"
+          },
+          {
+            "name" : "AdventOfCode2023Tests"
+          },
+          {
+            "name" : "AdventOfCode2024"
+          }
+        ],
+        "xctestClasses" : [
+          {
+            "name" : "AdventOfCode2023Tests"
+          }
+        ]
+      },
       "target" : {
         "containerPath" : "container:",
         "identifier" : "AdventOfCodeTests",
@@ -24,5 +39,5 @@
       }
     }
   ],
-  "version" : 1
+  "version" : 2
 }

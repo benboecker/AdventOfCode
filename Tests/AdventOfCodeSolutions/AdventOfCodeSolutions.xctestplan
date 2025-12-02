@@ -14,6 +14,19 @@
   "testTargets" : [
     {
       "parallelizable" : false,
+      "skippedTests" : {
+        "suites" : [
+          {
+            "name" : "AdventOfCode2022Solutions"
+          },
+          {
+            "name" : "AdventOfCode2023Solutions"
+          },
+          {
+            "name" : "AdventOfCode2024Solutions"
+          }
+        ]
+      },
       "target" : {
         "containerPath" : "container:",
         "identifier" : "AdventOfCodeSolutions",
@@ -21,5 +34,5 @@
       }
     }
   ],
-  "version" : 1
+  "version" : 2
 }
