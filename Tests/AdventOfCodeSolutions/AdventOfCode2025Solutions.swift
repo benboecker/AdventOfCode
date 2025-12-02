@@ -17,6 +17,7 @@ struct AdventOfCode2025Solutions {
 	func solutions() async throws {
 		let days: [any Day] = [
 			Day1(Lines(fileName: "2025-01", bundle: .module)),
+			Day2(Lines(fileName: "2025-02", bundle: .module)),
 		]
 		
 		for (index, day) in days.enumerated() {
