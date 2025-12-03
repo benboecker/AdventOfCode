@@ -18,6 +18,7 @@ struct AdventOfCode2025Solutions {
 		let days: [any Day] = [
 			Day1(Lines(fileName: "2025-01", bundle: .module)),
 			Day2(Lines(fileName: "2025-02", bundle: .module)),
+			Day3(Lines(fileName: "2025-03", bundle: .module)),
 		]
 		
 		for (index, day) in days.enumerated() {

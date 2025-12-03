@@ -43,4 +43,19 @@ struct AdventOfCode2025 {
 	}
 	
 	
+	@Test("Day 3 - Part 1")
+	func day3Part1() async throws {
+		let day3 = Day3(Lines(fileName: "2025-03", bundle: .module))
+		let part1 = try await day3.part1()
+		#expect(part1 == "357")
+	}
+	
+	@Test("Day 3 - Part 2")
+	func day3Part2() async throws {
+		let day3 = Day3(Lines(fileName: "2025-03", bundle: .module))
+		let part2 = try await day3.part2()
+		#expect(part2 == "3121910778619")
+	}
+	
+	
 }
