@@ -31,10 +31,6 @@ public struct Grid<Element: Hashable> {
 //		self.elements = elements
 		self.elements = input.reduce([]) { $0 + $1.map { convert(String($0)) } }
 	}
-
-	
-	
-	
 }
 
 

@@ -58,4 +58,19 @@ struct AdventOfCode2025 {
 	}
 	
 	
+	@Test("Day 4 - Part 1")
+	func day4Part1() async throws {
+		let day4 = Day4(Lines(fileName: "2025-04", bundle: .module))
+		let part1 = try await day4.part1()
+		#expect(part1 == "13")
+	}
+	
+	@Test("Day 4 - Part 2")
+	func day4Part2() async throws {
+		let day4 = Day4(Lines(fileName: "2025-04", bundle: .module))
+		let part2 = try await day4.part2()
+		#expect(part2 == "43")
+	}
+	
+	
 }

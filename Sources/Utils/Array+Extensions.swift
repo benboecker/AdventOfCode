@@ -25,4 +25,8 @@ public extension Collection where Element: Hashable {
 	var uniqueElements: [Element] {
 		Array(Set(self))
 	}
+	
+	func toSet() -> Set<Element> {
+		Set(self)
+	}
 }
