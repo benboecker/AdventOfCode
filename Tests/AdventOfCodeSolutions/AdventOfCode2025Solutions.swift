@@ -20,6 +20,8 @@ struct AdventOfCode2025Solutions {
 			Day2(Lines(fileName: "2025-02", bundle: .module)),
 			Day3(Lines(fileName: "2025-03", bundle: .module)),
 			Day4(Lines(fileName: "2025-04", bundle: .module)),
+			Day5(Lines(fileName: "2025-05", bundle: .module)),
+			Day6(Lines(fileName: "2025-06", bundle: .module)),
 		]
 		
 		for (index, day) in days.enumerated() {
