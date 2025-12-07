@@ -57,11 +57,4 @@ fileprivate extension Grid where Element == Bool {
 		.toSet()
 	}
 		
-	mutating func toggle(at positions: Set<Vector2D>) {
-		for position in positions {
-			if let value = self[position] {
-				self[position] = !value
-			}
-		}
-	}
 }

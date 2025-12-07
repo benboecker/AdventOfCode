@@ -31,6 +31,11 @@ public struct Grid<Element: Hashable> {
 //		self.elements = elements
 		self.elements = input.reduce([]) { $0 + $1.map { convert(String($0)) } }
 	}
+	
+	private init() {
+		self.size = .zero
+		self.elements = []
+	}
 }
 
 
@@ -162,6 +167,17 @@ public extension Grid {
 		
 		static var all: [Direction] {
 			nonDiagonal + [.upLeft, .upRight, .downLeft, .downRight]
+		}
+	}
+}
+
+
+public extension Grid where Element == Bool {	
+	mutating func toggle(at positions: Set<Vector2D>) {
+		for position in positions {
+			if let value = self[position] {
+				self[position] = !value
+			}
 		}
 	}
 }

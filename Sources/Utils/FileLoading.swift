@@ -21,7 +21,7 @@ public struct Lines: Hashable {
 		
 	}
 	
-	private let lines: [String]
+	public let lines: [String]
 	
 	public var count: Int {
 		lines.count

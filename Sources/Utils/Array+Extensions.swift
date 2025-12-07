@@ -30,3 +30,12 @@ public extension Collection where Element: Hashable {
 		Set(self)
 	}
 }
+
+public extension Array where Element: RandomAccessCollection {
+	func transposed() -> [[Element.Element]] {
+		guard let firstRow = self.first else { return [] }
+		return firstRow.indices.map { columnIndex in
+			self.map { $0[columnIndex] }
+		}
+	}
+}
