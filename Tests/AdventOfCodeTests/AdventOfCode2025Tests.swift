@@ -97,7 +97,7 @@ struct AdventOfCode2025 {
 	
 	@Test("Day 6 - Part 2")
 	func day6Part2() async throws {
-		let day6 = Day5(Lines(fileName: "2025-06", bundle: .module))
+		let day6 = Day6(Lines(fileName: "2025-06", bundle: .module))
 		let part2 = try await day6.part2()
 		#expect(part2 == "3263827")
 	}
